@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>
+            <%=locals.title%>
+        </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <!-- heading -->
+        <h1 class="heading">
+            <i class="fas fa-tasks"></i> 
+            ToDo App
+        </h1>
+        <div id="main">
+            
+          <form action="/create_list" method="post">
+              <!-- description about todo list -->
+              <div id="desc"><h2>Description</h2><textarea type="text" rows="2" cols="56" placeholder="what do you want to do?" name="description" ></textarea></div>
+              <!-- Category of list -->
+              <div id="categories"><h2>Category</h2>
+                <label for="category"></label>
+                <select id="category" name="category">
+                  <option value="Personal">Personal</option>
+                  <option value="Work">Work</option>
+                  <option value="School">School</option>
+                  <option value="Cleaning">Cleaning</option>
+                  <option value="Other">Other</option>
+              </select></div>
+              <!-- DueDate for completion of work -->
+              <div id="date">
+                  <h2>Due Date</h2>
+                  <input type="date" name="duedate" placeholder="dd/mm/yyyy"  min="1997-01-01" max="2030-12-31">
+              </div>
+              <!-- Button to submit form of create list -->
+              <div class="button"><button type="submit"><i class="far fa-plus-square"></i>Add Task</button></div>
+          </form>
+          <!-- Button to delete items from created list  -->
+          <div class="button" id="deletebutton"><label for="deleteSubmit" class="cat" ><i class="fas fa-trash-alt"></i>Delete</label></div>
+          <form id="delete" action="/delete/" method="get">
+              <!-- for printing all items in the database -->
+         <%for(let i of todo_list){%>
+            <div id="card">
+            <input type="checkbox" name="id" value="<%=i.id%>">
+            <label >
+       
+                
+               <span class="linethrough"><%=i.description%></span><span><br>&nbsp&nbsp&nbsp&nbsp&nbsp<i class="far fa-calendar-alt"></i>&nbsp<%=i.duedate%></span>
+                
+            </label>
+            <span class="cat"><%=i.category%></span>
+        </div>
+        <%}%>
+        <input type="submit" class="hidden" id="deleteSubmit">
+    </form>
+        </div>
+    </body>
+</html>
