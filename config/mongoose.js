@@ -1,7 +1,7 @@
 //for creating database and connecting mongoose with database
 const mongoose= require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/csv-reader')
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/todo-list')
 .then(()=>{console.log('db connected')})
 .catch((err)=>{console.log(err)});
 const db = mongoose.connection;
